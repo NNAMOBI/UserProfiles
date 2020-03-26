@@ -16,10 +16,35 @@ btn.addEventListener('click', function(){
     let url = "https://randomuser.me/api"
 
     
-    fetch(url).then(function(data){
+    fetch(url).then(parseJson)
 // console.log(data.json())
-return data.json()
-    }).then(function(data){
+// return data.json()
+    .then(updateDom)
+        // let firstName = data.results[0].name.first;
+        // let lastName = data.results[0].name.last;
+
+        // let initials = firstName + " " + lastName
+        // let userInit = data.results[0].login.username
+        //    let emailInit = data.results[0].email
+        //    let userImg = data.results[0].picture.large // url to avatar
+        //    let userCity = data.results[0].location.city
+
+
+// // console.log(data.results[0].name) 
+//     fullName.textContent = initials;
+// email.textContent = emailInit;
+// username.textContent = userInit;
+// img.src = userImg
+// city.textContent = userCity;
+    .catch(function(error){
+        console.log(error)
+    })
+
+    function parseJson(res){
+     return res.json()
+    }
+
+    function updateDom(data){
         let firstName = data.results[0].name.first;
         let lastName = data.results[0].name.last;
 
@@ -29,14 +54,11 @@ return data.json()
            let userImg = data.results[0].picture.large // url to avatar
            let userCity = data.results[0].location.city
 
+           fullName.textContent = initials;
+           email.textContent = emailInit;
+           username.textContent = userInit;
+           img.src = userImg
+           city.textContent = userCity;
 
-// // console.log(data.results[0].name) 
-    fullName.textContent = initials;
-email.textContent = emailInit;
-username.textContent = userInit;
-img.src = userImg
-city.textContent = userCity;
-    }).catch(function(error){
-        console.log(error)
-    })
+    }
 })
